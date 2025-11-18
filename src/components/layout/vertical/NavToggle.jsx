@@ -7,7 +7,7 @@ const NavToggle = () => {
   // Hooks
   const { toggleVerticalNav, isBreakpointReached } = useVerticalNav()
 
-  const handleClick = () => {
+  const handleClick = () =>{ 
     toggleVerticalNav()
   }
 
