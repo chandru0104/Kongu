@@ -12,19 +12,22 @@
  */
 import { promises as fs } from 'node:fs'
 import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 // Installation: npm install --save-dev @iconify/tools @iconify/utils @iconify/json @iconify/iconify
 import { cleanupSVG, importDirectory, isEmptyColor, parseColors, runSVGO } from '@iconify/tools'
 import { getIcons, getIconsCSS, stringToIcon } from '@iconify/utils'
 
+const __dirname = dirname(fileURLToPath(import.meta.url))
+
 const sources = {
   json: [
-    // Iconify JSON file (@iconify/json is a package name, /json/ is directory where files are, then filename)
-    require.resolve('@iconify/json/json/ri.json'),
+    // Iconify JSON file - will be resolved asynchronously
+    { package: '@iconify/json/json/ri.json' },
 
     // Custom file with only few icons
     {
-      filename: require.resolve('@iconify/json/json/line-md.json'),
+      package: '@iconify/json/json/line-md.json',
       icons: ['home-twotone-alt', 'github', 'document-list', 'document-code', 'image-twotone']
     }
 
@@ -81,12 +84,32 @@ const target = join(__dirname, 'generated-icons.css')
     const organizedList = organizeIconsList(sources.icons)
 
     for (const prefix in organizedList) {
-      const filename = require.resolve(`@iconify/json/json/${prefix}.json`)
+      const resolvedPath = await import.meta.resolve(`@iconify/json/json/${prefix}.json`)
+      const filename = resolvedPath.replace('file://', '')
 
       sourcesJSON.push({
         filename,
         icons: organizedList[prefix]
       })
+    }
+  }
+
+  /**
+   * Resolve package paths
+   */
+  if (sources.json) {
+    for (let i = 0; i < sources.json.length; i++) {
+      const item = sources.json[i]
+      if (item.package) {
+        try {
+          const resolvedPath = await import.meta.resolve(item.package)
+          item.filename = resolvedPath.replace('file://', '')
+          delete item.package
+        } catch (err) {
+          console.error(`Failed to resolve ${item.package}:`, err.message)
+          throw err
+        }
+      }
     }
   }
 
