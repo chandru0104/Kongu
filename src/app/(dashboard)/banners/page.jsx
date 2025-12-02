@@ -50,6 +50,7 @@ const MAX_BANNERS = 5
 const initialBanners = [
   { id: 1, url: '/img/banner1.jpg', fileName: 'school_ground.jpg' },
   { id: 2, url: '/img/banner2.jpg', fileName: 'cultural_fest.jpg' }
+
   // Add more dummy banners up to 5 if needed
 ]
 

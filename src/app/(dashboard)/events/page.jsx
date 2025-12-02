@@ -251,7 +251,8 @@ const EventCard = ({ event }) => {
               height: 40,
               borderRadius: 1,
               mr: 1,
-              backgroundColor: grey[300],
+              backgroundColor: grey[300]
+
               // Note: Actual image paths are placeholders. In a real app, use imported images or valid URLs.
             }}
           >
