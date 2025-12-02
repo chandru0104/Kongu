@@ -2,6 +2,7 @@
 'use client'
 
 import React, { useState, useMemo } from 'react'
+
 import {
   Box,
   Typography,
@@ -32,8 +33,6 @@ import {
 } from '@mui/icons-material'
 
 import { green, blue, grey, red } from '@mui/material/colors'
-
-
 
 // =======================================================
 // 📚 தரவு மற்றும் அமைப்புகள் (Data and Settings)
@@ -86,7 +85,7 @@ const initialEvents = [
   },
   {
     id: 5,
-    title: 'ANNUAL TEACHER\'S MEET',
+    title: "ANNUAL TEACHER'S MEET",
     status: 'Past',
     description: 'Review of academic performance and future strategies for the new academic year.',
     dateRange: '5th October 2025',
@@ -104,7 +103,12 @@ const initialEvents = [
     dateRelative: 'Today',
     expiresIn: '1500 days',
     images: 7,
-    previewImages: ['/placeholder/img10.jpg', '/placeholder/img11.jpg', '/placeholder/img12.jpg', '/placeholder/img13.jpg']
+    previewImages: [
+      '/placeholder/img10.jpg',
+      '/placeholder/img11.jpg',
+      '/placeholder/img12.jpg',
+      '/placeholder/img13.jpg'
+    ]
   },
   {
     id: 7,
@@ -137,7 +141,12 @@ const initialEvents = [
     dateRelative: '77 days ago',
     expiresIn: 'Expired',
     images: 15,
-    previewImages: ['/placeholder/img14.jpg', '/placeholder/img15.jpg', '/placeholder/img16.jpg', '/placeholder/img17.jpg']
+    previewImages: [
+      '/placeholder/img14.jpg',
+      '/placeholder/img15.jpg',
+      '/placeholder/img16.jpg',
+      '/placeholder/img17.jpg'
+    ]
   },
   {
     id: 10,
@@ -169,7 +178,7 @@ const EventCard = ({ event }) => {
     return (
       <Chip
         label={status}
-        size="small"
+        size='small'
         sx={{
           bgcolor: color,
           color: 'white',
@@ -183,48 +192,48 @@ const EventCard = ({ event }) => {
 
   return (
     <Card elevation={1} sx={{ p: 3, mb: 3, borderRadius: 2 }}>
-      <Box display="flex" justifyContent="space-between" alignItems="flex-start" mb={1}>
+      <Box display='flex' justifyContent='space-between' alignItems='flex-start' mb={1}>
         <Box>
-          <Typography variant="h6" fontWeight="bold" color="text.primary">
+          <Typography variant='h6' fontWeight='bold' color='text.primary'>
             {event.title}
           </Typography>
           <StatusChip status={event.status} />
         </Box>
         <Box>
-          <IconButton size="small" sx={{ color: blue[500], mr: 1 }} onClick={() => alert(`Edit ${event.title}`)}>
-            <EditIcon fontSize="small" />
+          <IconButton size='small' sx={{ color: blue[500], mr: 1 }} onClick={() => alert(`Edit ${event.title}`)}>
+            <EditIcon fontSize='small' />
           </IconButton>
-          <IconButton size="small" sx={{ color: red[500] }} onClick={() => alert(`Delete ${event.title}`)}>
-            <DeleteIcon fontSize="small" />
+          <IconButton size='small' sx={{ color: red[500] }} onClick={() => alert(`Delete ${event.title}`)}>
+            <DeleteIcon fontSize='small' />
           </IconButton>
         </Box>
       </Box>
 
-      <Typography variant="body2" color="text.secondary" mb={1}>
+      <Typography variant='body2' color='text.secondary' mb={1}>
         {event.description}
       </Typography>
-      <Typography variant="body2" color="text.primary" fontWeight="medium" mb={2}>
+      <Typography variant='body2' color='text.primary' fontWeight='medium' mb={2}>
         Date: {event.dateRange}
       </Typography>
 
-      <Grid container spacing={2} alignItems="center" mb={2}>
+      <Grid container spacing={2} alignItems='center' mb={2}>
         <Grid item xs={12} sm={6}>
-          <Box display="flex" alignItems="center">
+          <Box display='flex' alignItems='center'>
             <CalendarMonthIcon sx={{ color: theme.palette.primary.main, mr: 1, fontSize: 18 }} />
-            <Typography variant="body2" fontWeight="medium">
+            <Typography variant='body2' fontWeight='medium'>
               Event Date:
-              <Typography component="span" variant="body2" color="text.secondary" sx={{ ml: 1 }}>
+              <Typography component='span' variant='body2' color='text.secondary' sx={{ ml: 1 }}>
                 {event.dateRelative}
               </Typography>
             </Typography>
           </Box>
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Box display="flex" alignItems="center">
+          <Box display='flex' alignItems='center'>
             <AccessTimeIcon sx={{ color: theme.palette.primary.main, mr: 1, fontSize: 18 }} />
-            <Typography variant="body2" fontWeight="medium">
+            <Typography variant='body2' fontWeight='medium'>
               Expires At:
-              <Typography component="span" variant="body2" color="text.secondary" sx={{ ml: 1 }}>
+              <Typography component='span' variant='body2' color='text.secondary' sx={{ ml: 1 }}>
                 {event.expiresIn}
               </Typography>
             </Typography>
@@ -233,7 +242,7 @@ const EventCard = ({ event }) => {
       </Grid>
 
       {/* Image Previews */}
-      <Box display="flex" alignItems="center" mt={2} overflow="hidden">
+      <Box display='flex' alignItems='center' mt={2} overflow='hidden'>
         {event.previewImages.slice(0, 4).map((src, index) => (
           <Box
             key={index}
@@ -242,13 +251,24 @@ const EventCard = ({ event }) => {
               height: 40,
               borderRadius: 1,
               mr: 1,
-              backgroundColor: grey[300],
+              backgroundColor: grey[300]
               // Note: Actual image paths are placeholders. In a real app, use imported images or valid URLs.
             }}
           >
             {/* Placeholder to mimic image display */}
-            <Box sx={{ width: '100%', height: '100%', bgcolor: grey[300], display: 'flex', alignItems: 'center', justifyContent: 'center', color: grey[700], fontSize: '0.6rem' }}>
-                IMG
+            <Box
+              sx={{
+                width: '100%',
+                height: '100%',
+                bgcolor: grey[300],
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: grey[700],
+                fontSize: '0.6rem'
+              }}
+            >
+              IMG
             </Box>
           </Box>
         ))}
@@ -256,7 +276,7 @@ const EventCard = ({ event }) => {
           <Chip
             icon={<ImageIcon />}
             label={`${event.images - 4} Images`}
-            size="small"
+            size='small'
             sx={{ bgcolor: blue[50], color: blue[600], fontWeight: 'bold' }}
           />
         )}
@@ -272,9 +292,9 @@ const EventsManagementMUI = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState('All')
   const [currentPage, setCurrentPage] = useState(1)
-  
+
   // 🔥 இங்கே 10 ஆக மாற்றப்பட்டுள்ளது (Changed to 10 here)
-  const eventsPerPage = 10 
+  const eventsPerPage = 10
 
   // Filtering Logic (Basic implementation)
   const filteredEvents = useMemo(() => {
@@ -288,11 +308,8 @@ const EventsManagementMUI = () => {
   // Pagination Logic
   const totalItems = filteredEvents.length
   const totalPages = Math.ceil(totalItems / eventsPerPage)
-  
-  const paginatedEvents = filteredEvents.slice(
-    (currentPage - 1) * eventsPerPage,
-    currentPage * eventsPerPage
-  )
+
+  const paginatedEvents = filteredEvents.slice((currentPage - 1) * eventsPerPage, currentPage * eventsPerPage)
 
   const handleCreateEvent = () => {
     alert('Navigate to Create Event Form')
@@ -304,42 +321,42 @@ const EventsManagementMUI = () => {
 
   return (
     <Box sx={{ backgroundColor: '#f4f6f8', minHeight: '100vh' }}>
-      <Container maxWidth="lg" sx={{ pt: 3, pb: 5 }}>
+      <Container maxWidth='lg' sx={{ pt: 3, pb: 5 }}>
         {/* --- 1. Page Header --- */}
-        <Box display="flex" justifyContent="space-between" alignItems="center" mb={4}>
-          <Box display="flex" alignItems="center">
+        <Box display='flex' justifyContent='space-between' alignItems='center' mb={4}>
+          <Box display='flex' alignItems='center'>
             <CalendarMonthIcon sx={{ mr: 1.5, fontSize: 35, color: 'primary.main' }} />
             <Box>
-              <Typography variant="h5" component="h1" fontWeight="bold">
+              <Typography variant='h5' component='h1' fontWeight='bold'>
                 Events Management
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant='body2' color='text.secondary'>
                 Manage school events and announcements
               </Typography>
             </Box>
           </Box>
-          <Button variant="contained" startIcon={<AddIcon />} size="large" onClick={handleCreateEvent}>
+          <Button variant='contained' startIcon={<AddIcon />} size='large' onClick={handleCreateEvent}>
             Create Event
           </Button>
         </Box>
 
         {/* --- 2. Search & Filter Bar --- */}
         <Paper elevation={1} sx={{ p: 2, mb: 3, borderRadius: 2 }}>
-          <Grid container spacing={2} alignItems="center">
+          <Grid container spacing={2} alignItems='center'>
             <Grid item xs={12} sm={8}>
               <TextField
                 fullWidth
-                placeholder="Search events..."
-                variant="outlined"
-                size="small"
+                placeholder='Search events...'
+                variant='outlined'
+                size='small'
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
                 InputProps={{
                   startAdornment: (
-                    <InputAdornment position="start">
-                      <SearchIcon color="action" />
+                    <InputAdornment position='start'>
+                      <SearchIcon color='action' />
                     </InputAdornment>
-                  ),
+                  )
                 }}
               />
             </Grid>
@@ -348,17 +365,17 @@ const EventsManagementMUI = () => {
                 fullWidth
                 value={statusFilter}
                 onChange={e => setStatusFilter(e.target.value)}
-                variant="outlined"
-                size="small"
+                variant='outlined'
+                size='small'
               >
-                <MenuItem value="All">All</MenuItem>
-                <MenuItem value="Ongoing">Ongoing</MenuItem>
-                <MenuItem value="Upcoming">Upcoming</MenuItem>
-                <MenuItem value="Past">Past</MenuItem>
+                <MenuItem value='All'>All</MenuItem>
+                <MenuItem value='Ongoing'>Ongoing</MenuItem>
+                <MenuItem value='Upcoming'>Upcoming</MenuItem>
+                <MenuItem value='Past'>Past</MenuItem>
               </Select>
             </Grid>
             <Grid item xs={4} sm={1}>
-              <IconButton color="primary" onClick={handleRefresh} size="large">
+              <IconButton color='primary' onClick={handleRefresh} size='large'>
                 <RefreshIcon />
               </IconButton>
             </Grid>
@@ -366,10 +383,10 @@ const EventsManagementMUI = () => {
         </Paper>
 
         {/* --- 3. Stats Chips --- */}
-        <Box display="flex" gap={1.5} mb={3}>
-          <Chip label={`Total Events: ${totalEvents}`} variant="outlined" color="primary" />
-          <Chip label={`Current Page: ${currentPage}`} variant="outlined" color="primary" />
-          <Chip label={`Total Pages: ${totalPages}`} variant="outlined" color="primary" />
+        <Box display='flex' gap={1.5} mb={3}>
+          <Chip label={`Total Events: ${totalEvents}`} variant='outlined' color='primary' />
+          <Chip label={`Current Page: ${currentPage}`} variant='outlined' color='primary' />
+          <Chip label={`Total Pages: ${totalPages}`} variant='outlined' color='primary' />
         </Box>
 
         {/* --- 4. Event List --- */}
@@ -384,16 +401,19 @@ const EventsManagementMUI = () => {
         )}
 
         {/* --- 5. Pagination --- */}
-        <Paper elevation={1} sx={{ p: 2, mt: 3, borderRadius: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Typography variant="body2" color="text.secondary">
+        <Paper
+          elevation={1}
+          sx={{ p: 2, mt: 3, borderRadius: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+        >
+          <Typography variant='body2' color='text.secondary'>
             Page {currentPage} of {totalPages} ({totalItems} total)
           </Typography>
           <Pagination
             count={totalPages}
             page={currentPage}
             onChange={(event, value) => setCurrentPage(value)}
-            color="primary"
-            size="medium"
+            color='primary'
+            size='medium'
           />
         </Paper>
       </Container>

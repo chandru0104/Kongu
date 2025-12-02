@@ -2,6 +2,7 @@
 'use client'
 
 import React, { useState, useCallback } from 'react'
+
 import {
   Box,
   Typography,
@@ -55,6 +56,7 @@ const initialBanners = [
 // ------------------------------------------------------------------
 // 🔨 Reusable Components: Banner Guideline Box
 // ------------------------------------------------------------------
+
 const GuidelineBox = () => {
   const theme = useTheme()
   return (
@@ -93,6 +95,7 @@ const GuidelineBox = () => {
 // ------------------------------------------------------------------
 // ⭐ முக்கிய BannerManagementMUI Component
 // ------------------------------------------------------------------
+
 const BannerManagementMUI = () => {
   const theme = useTheme()
   const [currentBanners, setCurrentBanners] = useState(initialBanners)
@@ -104,6 +107,7 @@ const BannerManagementMUI = () => {
 
     if (totalCount > MAX_BANNERS) {
       alert(`Maximum ${MAX_BANNERS} banners allowed. You tried to upload too many.`)
+
       return
     }
 
