@@ -214,6 +214,7 @@ const StaffManagementMUI = () => {
       const newId = staffMembers.length > 0 ? Math.max(...staffMembers.map(s => s.id)) + 1 : 1
 
       const newStaff = { ...formData, id: newId }
+
       setStaffMembers(prev => [...prev, newStaff])
       alert(`New Staff ${newStaff.name} created!`)
     } else {

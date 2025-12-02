@@ -172,7 +172,9 @@ const EventCard = ({ event }) => {
 
   const StatusChip = ({ status }) => {
     let color = grey[500]
+
     if (status === 'Ongoing') color = green[600]
+
     if (status === 'Upcoming') color = blue[600]
 
     return (

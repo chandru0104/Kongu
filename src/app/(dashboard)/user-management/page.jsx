@@ -1,7 +1,6 @@
 'use client' // Client component directive
 
 import React, { useState } from 'react'
-import Link from 'next/link'
 
 import {
   Box,
@@ -44,6 +43,9 @@ import {
   AccessTime as AccessTimeIcon
 } from '@mui/icons-material'
 
+// -----------------------------
+// Sample Data
+// -----------------------------
 const summaryData = [
   { title: 'Total Classes', count: 40, type: 'classes' },
   { title: 'Total Students', count: 1111, type: 'students' },
@@ -51,7 +53,6 @@ const summaryData = [
 ]
 
 const classData = [
-  // --- Old 15 Classes ---
   {
     id: 1,
     className: 'Trial Class Students',
@@ -102,8 +103,6 @@ const classData = [
     createdDate: '1 Nov 2025',
     updatedDate: '14 Nov 2025'
   },
-
-  // --- 10 New Classes Added ---
   { id: 16, className: 'IV C', students: 30, staff: 8, createdDate: '1 Aug 2025', updatedDate: '2 Nov 2025' },
   { id: 17, className: 'III A & B', students: 55, staff: 12, createdDate: '1 Aug 2025', updatedDate: '14 Nov 2025' },
   { id: 18, className: 'II Art Workshop', students: 20, staff: 4, createdDate: '1 Oct 2025', updatedDate: null },
@@ -151,7 +150,9 @@ const classData = [
   }
 ]
 
-// Helper function to determine status chip (மீண்டும் பயன்படுத்தப்பட்டுள்ளது)
+// -----------------------------
+// Helper: Status Chip
+// -----------------------------
 const getStatusChip = updatedDate => {
   if (!updatedDate) {
     return (
@@ -165,7 +166,7 @@ const getStatusChip = updatedDate => {
     )
   }
 
-  const today = new Date('14 Nov 2025') // Fixed date for demo
+  const today = new Date('14 Nov 2025')
   const update = new Date(updatedDate)
   const diffTime = Math.abs(today - update)
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
@@ -197,8 +198,9 @@ const getStatusChip = updatedDate => {
   }
 }
 
-// --- 2. SummaryCard Component (மீண்டும் பயன்படுத்தப்பட்டுள்ளது) ---
-
+// -----------------------------
+// SummaryCard Component
+// -----------------------------
 const SummaryCard = ({ title, count, type }) => {
   const theme = useTheme()
 
@@ -243,7 +245,9 @@ const SummaryCard = ({ title, count, type }) => {
   )
 }
 
-// --- 3. ClassDetailCard Component (மீண்டும் பயன்படுத்தப்பட்டுள்ளது) ---
+// -----------------------------
+// ClassDetailCard Component
+// -----------------------------
 const ClassDetailCard = ({ className, students, staff, createdDate, updatedDate, handleEditClick, id }) => {
   const isTrial = className.includes('Trial')
   const StatusChip = getStatusChip(updatedDate)
@@ -257,25 +261,20 @@ const ClassDetailCard = ({ className, students, staff, createdDate, updatedDate,
         borderColor: isTrial ? 'primary.main' : 'divider',
         height: '100%',
         transition: 'box-shadow 0.3s',
-        '&:hover': {
-          boxShadow: 6
-        }
+        '&:hover': { boxShadow: 6 }
       }}
     >
       <CardContent>
         <Box display='flex' justifyContent='space-between' alignItems='flex-start' mb={1}>
-          <Box>
-            <Typography
-              variant='subtitle1'
-              component='div'
-              fontWeight='bold'
-              sx={{ display: 'flex', alignItems: 'center' }}
-            >
-              <DescriptionIcon sx={{ mr: 1, color: 'text.secondary', fontSize: 20 }} />
-              {className}
-            </Typography>
-          </Box>
-          {/* Action button in card - assumes this also navigates or opens a modal */}
+          <Typography
+            variant='subtitle1'
+            component='div'
+            fontWeight='bold'
+            sx={{ display: 'flex', alignItems: 'center' }}
+          >
+            <DescriptionIcon sx={{ mr: 1, color: 'text.secondary', fontSize: 20 }} />
+            {className}
+          </Typography>
           <IconButton
             size='small'
             color='primary'
@@ -294,11 +293,7 @@ const ClassDetailCard = ({ className, students, staff, createdDate, updatedDate,
               label={`${students} Students`}
               color='info'
               variant='outlined'
-              sx={{
-                fontWeight: 'medium',
-                width: '100%',
-                justifyContent: 'flex-start'
-              }}
+              sx={{ width: '100%' }}
             />
           </Grid>
           <Grid item xs={12}>
@@ -307,11 +302,7 @@ const ClassDetailCard = ({ className, students, staff, createdDate, updatedDate,
               label={`${staff} Staff`}
               color='success'
               variant='outlined'
-              sx={{
-                fontWeight: 'medium',
-                width: '100%',
-                justifyContent: 'flex-start'
-              }}
+              sx={{ width: '100%' }}
             />
           </Grid>
         </Grid>
@@ -327,7 +318,9 @@ const ClassDetailCard = ({ className, students, staff, createdDate, updatedDate,
   )
 }
 
-// --- 4. Main Exported Component (முழு பக்கம்) ---
+// -----------------------------
+// Main Page Component
+// -----------------------------
 const ClassManagementPage = () => {
   const [viewMode, setViewMode] = useState('grid')
   const [openDialog, setOpenDialog] = useState(false)
@@ -336,13 +329,10 @@ const ClassManagementPage = () => {
   const [formData, setFormData] = useState({})
 
   const handleViewChange = (event, newValue) => {
-    if (newValue !== null) {
-      setViewMode(newValue)
-    }
+    if (newValue !== null) setViewMode(newValue)
   }
 
   const handleCreateNew = () => {
-    console.log('Create new class clicked')
     setIsCreating(true)
     setEditData(null)
     setFormData({
@@ -358,7 +348,6 @@ const ClassManagementPage = () => {
   }
 
   const handleEditClick = row => {
-    console.log('Edit clicked for row:', row)
     setEditData(row)
     setFormData({
       className: row.className,
@@ -368,7 +357,6 @@ const ClassManagementPage = () => {
       updatedDate: row.updatedDate || ''
     })
     setOpenDialog(true)
-    console.log('Dialog should open now')
   }
 
   const handleCloseDialog = () => {
@@ -381,38 +369,22 @@ const ClassManagementPage = () => {
   const handleInputChange = e => {
     const { name, value } = e.target
 
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }))
+    setFormData(prev => ({ ...prev, [name]: value }))
   }
 
   const handleSaveChanges = () => {
-    if (isCreating) {
-      console.log('Creating new class:', formData)
-
-      // Add your create API call here
-    } else {
-      console.log('Saving changes:', formData)
-
-      // Add your update API call here
-    }
-
+    if (isCreating) console.log('Creating new class:', formData)
+    else console.log('Saving changes:', formData)
     handleCloseDialog()
   }
 
+  // -----------------------------
+  // Page Header Component
+  // -----------------------------
   const PageHeader = () => (
     <Paper
       elevation={2}
-      sx={{
-        position: 'sticky',
-        top: 0,
-        zIndex: 1000,
-        p: 2,
-        mb: 4,
-        borderRadius: 0,
-        borderBottom: '1px solid #eee'
-      }}
+      sx={{ position: 'sticky', top: 0, zIndex: 1000, p: 2, mb: 4, borderRadius: 0, borderBottom: '1px solid #eee' }}
     >
       <Container maxWidth='xl'>
         <Box display='flex' justifyContent='space-between' alignItems='center'>
@@ -427,6 +399,7 @@ const ClassManagementPage = () => {
               </Typography>
             </Box>
           </Box>
+
           <Box>
             <IconButton color='primary' sx={{ mr: 1 }} size='large'>
               <RefreshIcon />
@@ -440,6 +413,9 @@ const ClassManagementPage = () => {
     </Paper>
   )
 
+  // -----------------------------
+  // Class Table Component
+  // -----------------------------
   const ClassTable = () => (
     <TableContainer component={Paper} elevation={1}>
       <Table sx={{ minWidth: 650 }} aria-label='class management table'>
@@ -501,7 +477,6 @@ const ClassManagementPage = () => {
       <PageHeader />
 
       <Container maxWidth='xl' sx={{ py: 2 }}>
-        {/* --- Summary Cards Section --- */}
         <Grid container spacing={4} sx={{ mb: 4 }}>
           {summaryData.map(data => (
             <Grid item xs={12} sm={4} key={data.title}>
@@ -514,7 +489,6 @@ const ClassManagementPage = () => {
           Class Details ({classData.length} classes)
         </Typography>
 
-        {/* --- View Toggler --- */}
         <Box display='flex' justifyContent='flex-end' sx={{ mb: 3 }}>
           <Tabs value={viewMode} onChange={handleViewChange} aria-label='class view mode tabs' indicatorColor='primary'>
             <Tab icon={<AppsIcon />} value='grid' label='Card View' />
@@ -522,7 +496,6 @@ const ClassManagementPage = () => {
           </Tabs>
         </Box>
 
-        {/* --- Class Detail View --- */}
         {viewMode === 'grid' && (
           <Grid container spacing={3}>
             {classData.map(data => (
@@ -536,7 +509,6 @@ const ClassManagementPage = () => {
         {viewMode === 'table' && <ClassTable />}
       </Container>
 
-      {/* --- Edit/Create Dialog --- */}
       <Dialog open={openDialog} onClose={handleCloseDialog} maxWidth='sm' fullWidth sx={{ zIndex: 10000 }}>
         <DialogTitle>{isCreating ? 'Create New Class' : 'Edit Class Information'}</DialogTitle>
         <DialogContent sx={{ pt: 3 }}>
