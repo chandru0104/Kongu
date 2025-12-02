@@ -251,7 +251,7 @@ const EventCard = ({ event }) => {
               height: 40,
               borderRadius: 1,
               mr: 1,
-              backgroundColor: grey[300]
+              backgroundColor: grey[300],
               // Note: Actual image paths are placeholders. In a real app, use imported images or valid URLs.
             }}
           >
@@ -301,6 +301,7 @@ const EventsManagementMUI = () => {
     return initialEvents.filter(event => {
       const statusMatch = statusFilter === 'All' || event.status === statusFilter
       const searchMatch = event.title.toLowerCase().includes(searchTerm.toLowerCase())
+
       return statusMatch && searchMatch
     })
   }, [searchTerm, statusFilter])

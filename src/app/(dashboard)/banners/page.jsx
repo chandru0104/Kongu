@@ -59,6 +59,7 @@ const initialBanners = [
 
 const GuidelineBox = () => {
   const theme = useTheme()
+
   return (
     <Card
       sx={{

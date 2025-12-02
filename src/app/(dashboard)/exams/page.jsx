@@ -58,6 +58,7 @@ const totalClasses = initialClasses.length
 const ClassAvatar = ({ char, isTrial }) => {
   const theme = useTheme()
   const color = isTrial ? theme.palette.info.main : theme.palette.primary.main
+
   return (
     <Box
       sx={{
@@ -251,7 +252,7 @@ const ExamClassSelectorMUI = () => {
                   sx={{ textAlign: 'center', py: 3 }}
                   primary={
                     <Typography variant='body1' color='text.secondary'>
-                      No classes found matching "{searchTerm}"
+                      No classes found matching &quot;{searchTerm}&quot;
                     </Typography>
                   }
                 />

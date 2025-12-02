@@ -198,13 +198,16 @@ const getStatusChip = updatedDate => {
 }
 
 // --- 2. SummaryCard Component (மீண்டும் பயன்படுத்தப்பட்டுள்ளது) ---
+
 const SummaryCard = ({ title, count, type }) => {
   const theme = useTheme()
+
   const iconMap = {
     classes: { icon: <DescriptionIcon />, color: theme.palette.primary.main },
     students: { icon: <PeopleIcon />, color: theme.palette.info.main },
     staff: { icon: <GroupIcon />, color: theme.palette.success.main }
   }
+
   const currentIcon = iconMap[type]
 
   return (
@@ -386,11 +389,14 @@ const ClassManagementPage = () => {
   const handleSaveChanges = () => {
     if (isCreating) {
       console.log('Creating new class:', formData)
+
       // Add your create API call here
     } else {
       console.log('Saving changes:', formData)
+
       // Add your update API call here
     }
+
     handleCloseDialog()
   }
 

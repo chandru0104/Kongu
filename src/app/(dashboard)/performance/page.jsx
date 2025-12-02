@@ -108,6 +108,7 @@ const initialStudentMembers = [
     scores: { Tamil: 85, English: 78, Maths: 88, Science: 82, SocScience: 80 }
   },
   // நிரப்புவதற்காக
+
   ...Array(54)
     .fill(null)
     .map((_, i) => {
@@ -118,8 +119,10 @@ const initialStudentMembers = [
         Science: Math.floor(Math.random() * (100 - 40 + 1)) + 40,
         SocScience: Math.floor(Math.random() * (100 - 40 + 1)) + 40
       }
+
       const avg = (scores.Tamil + scores.English + scores.Maths + scores.Science + scores.SocScience) / 5
       let performance
+
       if (avg >= 90) performance = 'A+'
       else if (avg >= 80) performance = 'A'
       else if (avg >= 70) performance = 'B+'
@@ -146,14 +149,17 @@ const SUBJECTS = ['Tamil', 'English', 'Maths', 'Science', 'SocScience'] // 5 Maj
 // =======================================================
 // 🔨 Student Summary Card Component (Existing)
 // =======================================================
+
 const StudentSummaryCard = ({ title, count, type }) => {
   const theme = useTheme()
+
   // Simplified iconMap for Students/Performance
   const iconMap = {
     total: { icon: <GroupIcon />, color: theme.palette.info.main },
     STUDENT: { icon: <PeopleIcon />, color: theme.palette.primary.main },
     performance: { icon: <PerformanceIcon />, color: theme.palette.warning.main }
   }
+
   const currentIcon = iconMap[type]
 
   if (!currentIcon) return null
@@ -315,20 +321,24 @@ const StudentPerformanceDialog = ({ student, open, onClose }) => {
   const averageScore = totalScore / SUBJECTS.length
 
   // Find Strongest and Weakest Subjects
+
   const bestSubject = subjectEntries.reduce((best, [name, score]) => (score > best.score ? { name, score } : best), {
     name: '',
     score: -1
   })
+
   const worstSubject = subjectEntries.reduce(
     (worst, [name, score]) => (score < worst.score ? { name, score } : worst),
     { name: '', score: 101 }
   )
 
   // Performance Color for Score Text - 🆕 Harmonized and Softer Colors
+
   const getScoreColor = score => {
     // Using light/soft hex codes for text consistency with the progress bar
     if (score >= 90) return '#66bb6a' // Light Green
     if (score >= 75) return '#ffb74d' // Light Orange
+
     return '#ef5350' // Light Red
   }
 
@@ -337,6 +347,7 @@ const StudentPerformanceDialog = ({ student, open, onClose }) => {
     // Keeping slightly lighter hex codes for the bar
     if (score >= 90) return '#66bb6a' // light green
     if (score >= 75) return '#ffb74d' // light orange
+
     return '#ef5350' // light red
   }
 

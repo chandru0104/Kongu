@@ -2,6 +2,7 @@
 'use client'
 
 import React, { useState, useMemo } from 'react'
+
 import {
   Box,
   Typography,
@@ -78,13 +79,16 @@ const staffRoles = ['STAFF', 'STAFF', 'ADMIN']
 // =======================================================
 // 🔨 Staff Summary Card Component
 // =======================================================
+
 const StaffSummaryCard = ({ title, count, type }) => {
   const theme = useTheme()
+
   const iconMap = {
     total: { icon: <GroupIcon />, color: theme.palette.info.main },
     STAFF: { icon: <AdminIcon />, color: theme.palette.success.main },
     staff: { icon: <PeopleIcon />, color: theme.palette.primary.main }
   }
+
   const currentIcon = iconMap[type]
 
   return (
@@ -198,6 +202,7 @@ const StaffManagementMUI = () => {
 
   const handleInputChange = e => {
     const { name, value } = e.target
+
     setFormData(prev => ({
       ...prev,
       [name]: value
@@ -406,7 +411,7 @@ const StaffManagementMUI = () => {
                 <TableRow>
                   <TableCell colSpan={4} align='center' sx={{ py: 4 }}>
                     <Typography variant='body1' color='text.secondary'>
-                      No staff found matching "{searchTerm}"
+                      No staff found matching &quot;{searchTerm}&quot;
                     </Typography>
                   </TableCell>
                 </TableRow>

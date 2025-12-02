@@ -60,6 +60,7 @@ const GeneralMessagesMUI = () => {
   const handleSendNotification = () => {
     if (!notificationTitle || !notificationBody) {
       alert('Please fill in the Title and Body before sending.')
+
       return
     }
 
@@ -155,6 +156,7 @@ const GeneralMessagesMUI = () => {
           value={recipientType}
           onChange={e => {
             setRecipientType(e.target.value)
+
             // Clear specific classes if switching away from that mode
             if (e.target.value !== 'Specific Classes') {
               setSelectedClasses([])
