@@ -31,6 +31,7 @@ import {
   Select,
   MenuItem
 } from '@mui/material';
+
 import {
   Refresh as RefreshIcon,
   Add as AddIcon,
@@ -41,6 +42,7 @@ import {
   Delete as DeleteIcon,
   AdminPanelSettings as AdminIcon
 } from '@mui/icons-material';
+
 
 // =======================================================
 // 📚 தரவு மற்றும் அமைப்புகள் (Data and Settings)
@@ -204,24 +206,25 @@ const StaffManagementMUI = () => {
 
   const handleSaveStaff = () => {
     if (isCreating) {
-        const newId = staffMembers.length > 0 ? Math.max(...staffMembers.map(s => s.id)) + 1 : 1;
-        const newStaff = { ...formData, id: newId };
-        setStaffMembers(prev => [...prev, newStaff]);
-        alert(`New Staff ${newStaff.name} created!`);
+      const newId = staffMembers.length > 0 ? Math.max(...staffMembers.map(s => s.id)) + 1 : 1;
+      const newStaff = { ...formData, id: newId };
+      setStaffMembers(prev => [...prev, newStaff]);
+      alert(`New Staff ${newStaff.name} created!`);
     } else {
-        setStaffMembers(prev => 
-            prev.map(s => (s.id === formData.id ? formData : s))
-        );
-        alert(`Staff ${formData.name} updated!`);
+      setStaffMembers(prev =>
+        prev.map(s => (s.id === formData.id ? formData : s))
+      );
+      alert(`Staff ${formData.name} updated!`);
     }
+
     handleCloseDialog();
   };
-  
+
   // 🎨 Role Chip Styling with Glass Effect
   const getRoleChip = (role) => {
     let colorName;
     let icon = <PeopleIcon sx={{ fontSize: 14 }} />;
-    
+
     switch (role) {
       case 'ADMIN':
         colorName = 'secondary';
@@ -231,32 +234,30 @@ const StaffManagementMUI = () => {
         colorName = 'warning';
         icon = <GroupIcon sx={{ fontSize: 14 }} />;
         break;
-      case 'STAFF':
       default:
-        colorName = 'primary';
         break;
     }
-    
+
+
     // Base color and its light variant for styling
     const baseColor = theme.palette[colorName].main;
     const lightColor = theme.palette[colorName].light;
 
     return (
-        <Chip
-            label={role}
-            size='small'
-            color={colorName}
-            icon={icon}
-            sx={{ 
-                fontWeight: 'bold',
-                // Glass Effect Implementation
-                backgroundColor: 'rgba(255, 255, 255, 0.2)', // Slightly visible background
-                color: baseColor, // Primary text color
-                border: `1px solid ${lightColor}50`, // Light border
-                backdropFilter: 'blur(4px)', // Key to glass effect
-                boxShadow: `0 4px 8px rgba(0, 0, 0, 0.1)`, // Subtle shadow
-            }}
-        />
+      <Chip
+        label={role}
+        size='small'
+        color={colorName}
+        icon={icon}
+        sx={{
+          fontWeight: 'bold',
+          backgroundColor: 'rgba(255, 255, 255, 0.2)',
+          color: baseColor,
+          border: `1px solid ${lightColor}50`,
+          backdropFilter: 'blur(4px)',
+          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
+        }}
+      />
     );
   };
 
@@ -318,45 +319,45 @@ const StaffManagementMUI = () => {
           ))}
         </Grid>
         
-        {/* --- 2. Search & Filter Bar --- */}
         <Card elevation={1} sx={{ mb: 4, p: 3, borderRadius: 2 }}>
-            <Typography variant='h6' gutterBottom fontWeight='bold'>
-                Search and Filter Staff
-            </Typography>
-            <Grid container spacing={2} alignItems='center'>
-                <Grid item xs={12} md={8} lg={9}>
-                    <TextField
-                        fullWidth
-                        label="Search Staff by Name or Email"
-                        name="search"
-                        variant="outlined"
-                        size="medium"
-                        value={inputTerm}
-                        onChange={(e) => setInputTerm(e.target.value)}
-                        onKeyPress={(e) => {
-                            if (e.key === 'Enter') handleSearch();
-                        }}
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <SearchIcon color='action' />
-                                </InputAdornment>
-                            ),
-                        }}
-                    />
-                </Grid>
-                <Grid item xs={12} md={4} lg={3}>
-                    <Box display='flex' gap={1}>
-                        <Button variant="contained" color="primary" onClick={handleSearch} sx={{ flexGrow: 1 }}>
-                            Search
-                        </Button>
-                        <Button variant="outlined" color="secondary" onClick={handleClear} sx={{ flexGrow: 1 }}>
-                            Clear
-                        </Button>
-                    </Box>
-                </Grid>
+          <Typography variant='h6' gutterBottom fontWeight='bold'>
+            Search and Filter Staff
+          </Typography>
+          <Grid container spacing={2} alignItems='center'>
+            <Grid item xs={12} md={8} lg={9}>
+              <TextField
+                fullWidth
+                label="Search Staff by Name or Email"
+                name="search"
+                variant="outlined"
+                size="medium"
+                value={inputTerm}
+                onChange={(e) => setInputTerm(e.target.value)}
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') handleSearch();
+                }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchIcon color='action' />
+                    </InputAdornment>
+                  ),
+                }}
+              />
             </Grid>
+            <Grid item xs={12} md={4} lg={3}>
+              <Box display='flex' gap={1}>
+                <Button variant="contained" color="primary" onClick={handleSearch} sx={{ flexGrow: 1 }}>
+                  Search
+                </Button>
+                <Button variant="outlined" color="secondary" onClick={handleClear} sx={{ flexGrow: 1 }}>
+                  Clear
+                </Button>
+              </Box>
+            </Grid>
+          </Grid>
         </Card>
+       
 
         <Typography variant='h5' component='h2' fontWeight='bold' sx={{ mb: 2 }}>
           Staff List ({totalFilteredMembers} members)
@@ -484,7 +485,7 @@ const StaffManagementMUI = () => {
         </DialogActions>
       </Dialog>
     </Box>
-  );
-};
+  )
+}
 
-export default StaffManagementMUI;
+export default StaffManagementMUI

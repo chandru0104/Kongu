@@ -100,9 +100,11 @@ const target = join(__dirname, 'generated-icons.css')
   if (sources.json) {
     for (let i = 0; i < sources.json.length; i++) {
       const item = sources.json[i]
+
       if (item.package) {
         try {
           const resolvedPath = await import.meta.resolve(item.package)
+
           item.filename = resolvedPath.replace('file://', '')
           delete item.package
         } catch (err) {

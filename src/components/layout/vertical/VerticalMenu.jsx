@@ -1,12 +1,6 @@
 // MUI Imports
 import Chip from '@mui/material/Chip'
 import { useTheme } from '@mui/material/styles'
-
-// Third-party Imports
-import PerfectScrollbar from 'react-perfect-scrollbar'
-
-// Component Imports
-import { Menu, SubMenu, MenuItem, MenuSection } from '@menu/vertical-menu'
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import PeopleIcon from '@mui/icons-material/People'
 import AssessmentIcon from '@mui/icons-material/Assessment'
@@ -14,6 +8,12 @@ import SchoolIcon from '@mui/icons-material/School'
 import EventIcon from '@mui/icons-material/Event'
 import SettingsIcon from '@mui/icons-material/Settings'
 import ImageIcon from '@mui/icons-material/Image'
+
+// Third-party Imports
+import PerfectScrollbar from 'react-perfect-scrollbar'
+
+// Component Imports
+import { Menu, SubMenu, MenuItem, MenuSection } from '@menu/vertical-menu'
 
 // Hook Imports
 import useVerticalNav from '@menu/hooks/useVerticalNav'
@@ -60,31 +60,31 @@ const VerticalMenu = ({ scrollMenu }) => {
         menuSectionStyles={menuSectionStyles(theme)}
       >
         <MenuItem href='/' icon={<DashboardIcon fontSize='small' />}>
-       Dashboard
+          Dashboard
         </MenuItem>
 
         <MenuItem href='/staff' icon={<PeopleIcon fontSize='small' />}>
-         Staff Management
+          Staff Management
         </MenuItem>
 
         <MenuItem href='/performance' icon={<AssessmentIcon fontSize='small' />}>
-         Performance
+          Performance
         </MenuItem>
 
         <MenuItem href='/exams' icon={<SchoolIcon fontSize='small' />}>
-         Exams
+          Exams
         </MenuItem>
 
         <MenuItem href='/events' icon={<EventIcon fontSize='small' />}>
-  Events
+          Events
         </MenuItem>
 
         <MenuItem href='/general-message' icon={<SettingsIcon fontSize='small' />}>
-        General Message
+          General Message
         </MenuItem>
 
         <MenuItem href='/banners' icon={<ImageIcon fontSize='small' />}>
-                Banners
+          Banners
         </MenuItem>
 
         <MenuItem href='/account-settings' icon={<SettingsIcon fontSize='small' />}>

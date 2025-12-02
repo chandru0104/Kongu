@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
+
 import {
   Box,
   Typography,
@@ -29,6 +30,7 @@ import {
   DialogActions,
   TextField
 } from '@mui/material'
+
 import {
   Refresh as RefreshIcon,
   Add as AddIcon,
@@ -41,7 +43,6 @@ import {
   Apps as AppsIcon,
   AccessTime as AccessTimeIcon
 } from '@mui/icons-material'
-
 
 const summaryData = [
   { title: 'Total Classes', count: 40, type: 'classes' },
@@ -272,7 +273,11 @@ const ClassDetailCard = ({ className, students, staff, createdDate, updatedDate,
             </Typography>
           </Box>
           {/* Action button in card - assumes this also navigates or opens a modal */}
-          <IconButton size='small' color='primary' onClick={() => handleEditClick({ id, className, students, staff, createdDate, updatedDate })}>
+          <IconButton
+            size='small'
+            color='primary'
+            onClick={() => handleEditClick({ id, className, students, staff, createdDate, updatedDate })}
+          >
             <EditIcon sx={{ fontSize: 18 }} />
           </IconButton>
         </Box>
@@ -341,13 +346,15 @@ const ClassManagementPage = () => {
       className: '',
       students: '',
       staff: '',
-      createdDate: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }).replace(/\s/g, ' '),
+      createdDate: new Date()
+        .toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
+        .replace(/\s/g, ' '),
       updatedDate: ''
     })
     setOpenDialog(true)
   }
 
-  const handleEditClick = (row) => {
+  const handleEditClick = row => {
     console.log('Edit clicked for row:', row)
     setEditData(row)
     setFormData({

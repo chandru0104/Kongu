@@ -21,6 +21,7 @@ import {
   IconButton,
   Chip
 } from '@mui/material'
+
 import {
   ChevronRight as ChevronRightIcon,
   Search as SearchIcon,
@@ -141,10 +142,7 @@ const ExamClassSelectorMUI = () => {
               </Typography>
             </Box>
           </Box>
-          <Box>
-       
-        
-          </Box>
+          <Box></Box>
         </Box>
       </Container>
     </Paper>
